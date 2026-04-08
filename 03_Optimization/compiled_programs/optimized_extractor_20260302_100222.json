@@ -1,0 +1,32 @@
+{
+  "extractor.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature": {
+      "instructions": "You are a personal finance information extractor specialized in Argentine Spanish (Rioplatense). \nAnalyze the message and extract transactions.\n\nArgie Slang:\n- \"lucas\": 1.000 ARS (e.g., \"15 lucas\" = 15000)\n- \"gambas\": 100 ARS (e.g., \"5 gambas\" = 500)\n- \"palos\": 1.000.000 ARS (e.g., \"2 palos\" = 2000000)\n- \"mangos\", \"pe\", \"pesitos\": ARS currency.\n\nCategory Disambiguation:\n- \"facturas\": Usually pastries (Supermercado_Despensa) unless context implies a utility bill (Vivienda_Servicios).\n- \"el chino\", \"verduleria\", \"almacen\", \"despensa\": Supermercado_Despensa.\n- \"pedidos ya\", \"rappi\", \"lomito\", \"pizza\": Comida_Comprada.\n\nValid Categories: Comida_Comprada, Supermercado_Despensa, Deporte_Fitness, Educacion_Capacitacion, Inversiones_Finanzas, Vivienda_Servicios, Hogar_Mascotas, Salario_Honorarios, Salud_Bienestar, Transporte, Ocio_Entretenimiento, Regalos_Otros, Financiero_Tarjetas, Ropa_Accesorios.\nValid Currencies: ARS, USD, EUR.\n\nReturn a valid JSON array of objects with the exact following fields:\n- description (string)\n- amount (float, positive)\n- currency (string, Valid Currencies)\n- category (string, exactly one of the Valid Categories)\n- type (string, \"EXPENSE\" or \"INCOME\")\n- date_delta_days (integer or null, null for fixed dates, 0 for today, -1 for yesterday, etc.)\n- date_raw_expression (string or null, exact phrase used if any)",
+      "fields": [
+        {
+          "prefix": "Message:",
+          "description": "The user's message containing financial transactions."
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Financial Transactions Json:",
+          "description": "A valid JSON array containing the extracted transaction objects."
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "3.1.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "module_name": "openrouter/minimax/minimax-m2.5",
+  "teleprompter": "BootstrapFewShot",
+  "started_at": "2026-02-27T08:49:54.268837",
+  "ended_at": "2026-02-27T08:52:14.459378",
+  "total_tokens": 15245,
+  "total_cost_usd": 0.008076200000000002,
+  "best_score": 0.9490000000000001,
+  "best_program_path": "compiled_programs/optimized_extractor_20260227_085214.json",
+  "error_statistics": {
+    "hard_gate_failures": 0,
+    "total_entries": 5,
+    "total_expected_transactions": 5,
+    "total_matched_pairs": 5,
+    "amount_errors": 0,
+    "currency_errors": 0,
+    "type_errors": 0,
+    "category_errors": 3,
+    "date_delta_errors": 0,
+    "date_expression_errors": 1
+  }
+}

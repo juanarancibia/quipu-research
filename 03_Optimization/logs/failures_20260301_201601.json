@@ -1,0 +1,37 @@
+[
+  {
+    "input": "hoal querido como estas?",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Ubicación compartida",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Ubicación enviada",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Mañana nos juntamos?",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Dale dale",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  }
+]

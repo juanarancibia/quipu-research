@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+.pytest_cache/
+.env
+
+# Flask
+instance/
+.webassets-cache
+
+# Tentative datasets (not curated yet)
+Phase_1/tentative_*.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Datos crudos
+01_Data_Acquisition/files/_chat.txt
+
+# Backups y archivos basura
+backups/
+*.backup*
+
+# Logs de descarte
+04_Synthetic_Data/logs/forward_discarded.jsonl

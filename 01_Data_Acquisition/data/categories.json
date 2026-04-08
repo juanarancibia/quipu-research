@@ -1,0 +1,68 @@
+{
+    "expense": [
+        {
+            "name": "Supermercado_Despensa",
+            "description": "Materia prima o productos para el hogar (verdulería, carnicería, dietética, súper). Comida para preparar."
+        },
+        {
+            "name": "Comida_Comprada",
+            "description": "Gastronomía preparada: restaurantes, delivery, bares, café, helado, salidas a comer."
+        },
+        {
+            "name": "Vivienda_Servicios",
+            "description": "Alquiler, expensas, luz, agua, internet, gas, impuestos de la casa."
+        },
+        {
+            "name": "Transporte",
+            "description": "Nafta, Uber/Cabify, transporte público (SUBE), peajes, estacionamiento."
+        },
+        {
+            "name": "Salud_Bienestar",
+            "description": "Gastos médicos, farmacia, psicólogo, peluquería, cuidado personal."
+        },
+        {
+            "name": "Ocio_Entretenimiento",
+            "description": "Cine, recitales, boliches, suscripciones (Netflix, Spotify), salidas no gastronómicas."
+        },
+        {
+            "name": "Deporte_Fitness",
+            "type": "gasto",
+            "description": "Cuota del club, gimnasio, alquiler de canchas, indumentaria deportiva, torneos."
+        },
+        {
+            "name": "Educacion_Capacitacion",
+            "type": "gasto",
+            "description": "Postgrados, facultad, cursos, libros, plataformas de aprendizaje."
+        },
+        {
+            "name": "Hogar_Mascotas",
+            "description": "Mantenimiento del hogar, servicio de limpieza, muebles, gastos de veterinaria y comida de mascotas."
+        },
+        {
+            "name": "Financiero_Tarjetas",
+            "description": "Pago de tarjeta de crédito, comisiones bancarias, pago de préstamos, cuotas."
+        },
+        {
+            "name": "Regalos_Otros",
+            "description": "Regalos a terceros, donaciones, propinas sueltas, gastos misceláneos imposibles de categorizar."
+        }
+    ],
+    "income": [
+        {
+            "name": "Salario_Honorarios",
+            "description": "Sueldos fijos, honorarios recurrentes, facturación mensual estable."
+        },
+        {
+            "name": "Ventas_Negocios",
+            "description": "Ingresos por ventas ocasionales, emprendimientos, trabajos freelance sueltos."
+        },
+        {
+            "name": "Inversiones_Finanzas",
+            "description": "Cambio de divisas (USD a ARS), rendimientos, cobro de deudas a favor, reintegros."
+        },
+        {
+            "name": "Regalos_Otros",
+            "description": "Regalos de terceros, donaciones, propinas sueltas, ingresos misceláneos imposibles de categorizar."
+        }
+    ]
+}

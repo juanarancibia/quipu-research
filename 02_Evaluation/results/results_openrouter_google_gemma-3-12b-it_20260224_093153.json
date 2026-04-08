@@ -1,0 +1,386 @@
+{
+  "total_entries": 15,
+  "strict_json_score": 0.0,
+  "entity_accuracy": 0.8646666666666666,
+  "category_match": 0.6333333333333333,
+  "f1_score": 0.9032,
+  "precision": 0.9333,
+  "recall": 0.875,
+  "per_entry_results": [
+    {
+      "input": "Gatse 5400 en cena con facu y bianca",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"Gatse 5400 en cena con facu y bianca\",\n    \"amount\": 5400.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 5400.0,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "Gatse 5400 en cena con facu y bianca",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "Sol me transfirio 63mil pesos por una dedua que tenia conmigo",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"Transferencia de Sol por deducción\",\n    \"amount\": 63000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Regalos_Otros\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "INCOME",
+          "amount": 63000.0,
+          "currency": "ARS",
+          "category": "Regalos_Otros",
+          "description": "Transferencia de Sol por deducción",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.85,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "25000 psicóloga",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"psicóloga\",\n    \"amount\": 25000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Salud_Bienestar\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 25000.0,
+          "currency": "ARS",
+          "category": "Salud_Bienestar",
+          "description": "psicóloga",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "5000 supermecado",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"supermecado\",\n    \"amount\": 5000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Supermercado_Despensa\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 5000.0,
+          "currency": "ARS",
+          "category": "Supermercado_Despensa",
+          "description": "supermecado",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "asado viernes a la noche 38,820",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"asado viernes a la noche\",\n    \"amount\": 38820.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Ocio_Entretenimiento\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": -4,\n    \"date_raw_expression\": \"viernes\"\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 38820.0,
+          "currency": "ARS",
+          "category": "Ocio_Entretenimiento",
+          "description": "asado viernes a la noche",
+          "date_delta_days": -4,
+          "date_raw_expression": "viernes"
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "gaste 156.16 usds en Airbnb El Bolsón",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"Airbnb El Bolsón\",\n    \"amount\": 156.16,\n    \"currency\": \"USD\",\n    \"category\": \"Vivienda_Servicios\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 156.16,
+          "currency": "USD",
+          "category": "Vivienda_Servicios",
+          "description": "Airbnb El Bolsón",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "10000 picada",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"picada\",\n    \"amount\": 10000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Supermercado_Despensa\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 10000.0,
+          "currency": "ARS",
+          "category": "Supermercado_Despensa",
+          "description": "picada",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.85,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "Pague 32221 de afip",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"Pague 32221 de afip\",\n    \"amount\": 32221.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Financiero_Tarjetas\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 32221.0,
+          "currency": "ARS",
+          "category": "Financiero_Tarjetas",
+          "description": "Pague 32221 de afip",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "17.000 lavado de auto",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"lavado de auto\",\n    \"amount\": 17000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Hogar_Mascotas\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 17000.0,
+          "currency": "ARS",
+          "category": "Hogar_Mascotas",
+          "description": "lavado de auto",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "Hola como estas vos sabes que me fui a jugar un partido de fútbol y gaste 45000 pesos",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"partido de fútbol\",\n    \"amount\": 45000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Deporte_Fitness\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 45000.0,
+          "currency": "ARS",
+          "category": "Deporte_Fitness",
+          "description": "partido de fútbol",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "Gaste\n18284 en el almacen \n12480 de camino de las sierras",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"almacen 12480 de camino de las sierras\",\n    \"amount\": 18284.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Supermercado_Despensa\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 18284.0,
+          "currency": "ARS",
+          "category": "Supermercado_Despensa",
+          "description": "almacen 12480 de camino de las sierras",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.43,
+      "category_match": 0.5,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 2,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 1
+      }
+    },
+    {
+      "input": "28750 en entrada cosquin rock",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"cosquin rock\",\n    \"amount\": 28750.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Ocio_Entretenimiento\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "INCOME",
+          "amount": 28750.0,
+          "currency": "ARS",
+          "category": "Ocio_Entretenimiento",
+          "description": "cosquin rock",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.85,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 1,
+        "false_negatives": 1
+      }
+    },
+    {
+      "input": "9.773,63 ecogas",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"ecogas\",\n    \"amount\": 9773.63,\n    \"currency\": \"ARS\",\n    \"category\": \"Vivienda_Servicios\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 9773.63,
+          "currency": "ARS",
+          "category": "Vivienda_Servicios",
+          "description": "ecogas",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "15000 lomito de betos",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"lomito de betos\",\n    \"amount\": 15000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 15000.0,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "lomito de betos",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "Gaste 57mil en las expensas",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"expensas\",\n    \"amount\": 57000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Vivienda_Servicios\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 57000.0,
+          "currency": "ARS",
+          "category": "Vivienda_Servicios",
+          "description": "expensas",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    }
+  ]
+}

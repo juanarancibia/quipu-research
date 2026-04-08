@@ -1,0 +1,4 @@
+dspy-ai
+litellm
+pydantic
+pytest

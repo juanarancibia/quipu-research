@@ -1,0 +1,22 @@
+{
+  "module_name": "gpt-4o-mini",
+  "teleprompter": "BootstrapFewShot",
+  "started_at": "2026-02-26T09:36:36.225815",
+  "ended_at": "2026-02-26T09:36:36.412442",
+  "total_tokens": 0,
+  "total_cost_usd": 0.0,
+  "best_score": 0.9309999999999998,
+  "best_program_path": "compiled_programs/optimized_extractor_20260226_093636.json",
+  "error_statistics": {
+    "hard_gate_failures": 0,
+    "total_entries": 5,
+    "total_expected_transactions": 5,
+    "total_matched_pairs": 5,
+    "amount_errors": 0,
+    "currency_errors": 0,
+    "type_errors": 0,
+    "category_errors": 3,
+    "date_delta_errors": 0,
+    "date_expression_errors": 4
+  }
+}

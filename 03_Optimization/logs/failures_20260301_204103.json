@@ -1,0 +1,54 @@
+[
+  {
+    "input": "hoal querido como estas?",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Ubicación compartida",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Ubicación enviada",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Mañana nos juntamos?",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Dale dale",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Gaste 8900 en la farmacia por un ibuprofeno y gasas",
+    "expected": [
+      {
+        "type": "EXPENSE",
+        "amount": 8900.0,
+        "currency": "ARS",
+        "category": "Salud_Bienestar",
+        "description": "Farmacia: ibuprofeno y gasas",
+        "date_delta_days": 0,
+        "date_raw_expression": null
+      }
+    ],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[\n  {\n    \"description\": \"Farmacia - ibuprofeno y gasas\",\n    \"amount\": 8900 \"currency\": \".0,\n   ARS\",\n    \"category\": \"Salud_Bienestar\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+  }
+]

@@ -1,0 +1,65 @@
+{
+  "extractor.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "message": "81557,50 compra de Bondiolas para cumpleaños",
+        "reasoning": "El mensaje indica una compra: \"81557,50 compra de Bondiolas para cumpleaños\". Convertí la coma decimal a punto y tomé la moneda por defecto como ARS. \"Bondiolas\" es un corte de carne comprado (insumo alimentario), por lo que corresponde a la categoría Supermercado_Despensa (compra de alimentos). No se menciona fecha, por lo que date_delta_days se pone en 0 y date_raw_expression queda en null. Es un gasto (EXPENSE).",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"compra de Bondiolas para cumpleaños\",\n    \"amount\": 81557.5,\n    \"currency\": \"ARS\",\n    \"category\": \"Supermercado_Despensa\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "message": "Hola como estas vos sabes que me fui a jugar un partido de fútbol y gaste 45000 pesos",
+        "reasoning": "El mensaje indica un gasto relacionado con jugar un partido de fútbol. Detecté la cantidad \"45000 pesos\" — \"pesos\" corresponde a ARS. La actividad \"partido de fútbol\" se clasifica como Deporte_Fitness según las categorías válidas. No se menciona fecha ni expresiones temporales, por lo que date_delta_days debe ser 0 y date_raw_expression queda null. Es un gasto, por lo tanto type = \"EXPENSE\".",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"partido de fútbol\",\n    \"amount\": 45000.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Deporte_Fitness\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "message": "Ok",
+        "reasoning": "No hay información de transacciones en el mensaje (\"Ok\"). No aparecen importes, monedas, descripciones ni expresiones de fecha. Por eso no se extrae ninguna transacción.",
+        "financial_transactions_json": "[]"
+      },
+      {
+        "message": "15500 fiambreria",
+        "targets": [
+          {
+            "type": "EXPENSE",
+            "amount": 15500.0,
+            "currency": "ARS",
+            "category": "Supermercado_Despensa",
+            "description": "Fiambrería",
+            "date_delta_days": 0,
+            "date_raw_expression": null
+          }
+        ]
+      }
+    ],
+    "signature": {
+      "instructions": "You are a personal finance information extractor specialized in Argentine (Rioplatense) Spanish. Given an informal message, possibly spanning multiple lines, with slang, varied number formats, and mixed currencies, analyze it and extract all financial transactions.\n\nNormalize colloquial amounts: \"mil\" = 1 000, \"lucas\" = 1 000 ARS (e.g. \"15 lucas\" = 15 000), \"gambas\" = 100 ARS, \"palos/palo\" = 1 000 000 ARS, \"mangos\"/\"pe\"/\"pesitos\" indicate ARS currency. Assume ARS if no currency is specified. Be robust to commas/dots in numbers.\n\nInfer type (EXPENSE vs INCOME) from verbs and context (e.g. \"pagué\", \"me gasté\" → EXPENSE; \"cobré\", \"me pagaron\" → INCOME). Apply category disambiguation: \"facturas\" are pastries (Supermercado_Despensa) unless clearly a utility bill (Vivienda_Servicios); \"el chino\"/\"verduleria\"/\"almacen\"/\"despensa\" → Supermercado_Despensa; \"pedidos ya\"/\"rappi\"/\"lomito\"/\"pizza\" → Comida_Comprada. Valid Categories: Comida_Comprada, Supermercado_Despensa, Deporte_Fitness, Educacion_Capacitacion, Inversiones_Finanzas, Vivienda_Servicios, Hogar_Mascotas, Salario_Honorarios, Salud_Bienestar, Transporte, Ocio_Entretenimiento, Regalos_Otros, Financiero_Tarjetas, Ropa_Accesorios. Valid Currencies: ARS, USD, EUR.\n\nHandle dates: if no date is mentioned, set date_delta_days = 0 and date_raw_expression = null; for relative references like \"hoy\" set 0, \"ayer\" set -1, and include the exact phrase in date_raw_expression. For absolute calendar dates (e.g. \"15/03\", \"el lunes 3 de julio\"), set date_delta_days = null and date_raw_expression to the exact phrase—do not compute a delta.\n\nIf the message contains no financial content, return an empty JSON array.\n\nReturn a JSON array of one object per transaction with exactly these fields:\n- description (string, cleaned brief description)\n- amount (float, positive)\n- currency (string, one of Valid Currencies)\n- category (string, one of Valid Categories)\n- type (\"EXPENSE\" or \"INCOME\")\n- date_delta_days (integer or null as above)\n- date_raw_expression (string or null)\n\nAlso output a brief step-by-step reasoning.",
+      "fields": [
+        {
+          "prefix": "Message:",
+          "description": "The user's message containing financial transactions."
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Financial Transactions Json:",
+          "description": "A valid JSON array containing the extracted transaction objects."
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "3.1.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}

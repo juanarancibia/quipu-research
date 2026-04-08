@@ -1,0 +1,66 @@
+{
+  "extractor": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "message": "-$92.548 obra social\ningresaron $727.537,8 de sueldo\ngaste -$7.900 en almacen\ngaste -$8.900 en el almacen\ngaste -$50.266 en farmacity\ngaste -$26.000 en cafe",
+        "current_date": "2026-01-07",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"obra social\",\n    \"amount\": 92548.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Salud_Bienestar\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"sueldo\",\n    \"amount\": 727537.8,\n    \"currency\": \"ARS\",\n    \"category\": \"Salario_Honorarios\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"almacen\",\n    \"amount\": 7900.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"el almacen\",\n    \"amount\": 8900.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"farmacity\",\n    \"amount\": 50266.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Salud_Bienestar\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"cafe\",\n    \"amount\": 26000.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Ocio_Entretenimiento\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "message": "6500 cine",
+        "current_date": "2025-07-19",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"cine\",\n    \"amount\": 6500,\n    \"currency\": \"ARS\",\n    \"category\": \"Ocio_Entretenimiento\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "message": "El 1 de agosto recibi 1290000 por vender 1000 dolares",
+        "current_date": "2025-08-06",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"Venta de 1000 dolares\",\n    \"amount\": 1290000.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Inversiones_Finanzas\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": -5,\n    \"date_raw_expression\": \"El 1 de agosto\"\n  }\n]"
+      },
+      {
+        "message": "El sabado gaste 28mil en don",
+        "current_date": "2025-07-22",
+        "targets": [
+          {
+            "type": "EXPENSE",
+            "amount": 28000.0,
+            "currency": "ARS",
+            "category": "Ocio_Entretenimiento",
+            "description": "Gasto en Don",
+            "date_delta_days": null,
+            "date_raw_expression": "El sabado"
+          }
+        ]
+      }
+    ],
+    "signature": {
+      "instructions": "Sos un extractor de transacciones de finanzas personales para mensajes cortos en español rioplatense (estilo chat). Dado `message` y la fecha de referencia `current_date`, devolvé **únicamente** un **array JSON válido** (sin texto extra) con **0..n** objetos de transacción. Si no hay ninguna transacción financiera explícita, devolvé `[]`.\n\nReglas de salida (estrictas):\n- Cada objeto debe tener **exactamente** estos campos:  \n  `description` (string), `amount` (float, **siempre positivo**), `currency` (ARS/USD/EUR), `category` (una de las válidas), `type` (\"EXPENSE\" o \"INCOME\"), `date_delta_days` (int o null), `date_raw_expression` (string o null).\n- No inventes campos, no devuelvas markdown, no agregues comentarios.\n\nSegmentación (0..n transacciones):\n- Detectá múltiples items en listas o frases con separadores: comas, punto y coma, saltos de línea, “y”, “+”, guiones, etc.\n- Si en un mensaje hay varios gastos/ingresos distintos, generá un objeto por cada uno.\n\nNormalización de montos (muy importante):\n- `amount` debe ser numérico y **positivo**. El sentido se refleja con `type`.\n- Interpretá formatos locales y ruidosos:  \n  - `3.000` → 3000; `3,5` → 3.5 (decimales); `1.234,56` → 1234.56.  \n  - Símbolos/moneda: `$`, `usd`, `u$d`, `dólares`, `eur`, `€`, `pesos`.  \n  - Sufijos: `mil` (×1000), `k` (×1000), `m`/`millón` (×1_000_000) cuando sea claro. Ej: `960mil` → 960000.  \n  - Signos: `-500`, `+75000` o “me devolvieron 500”: el `amount` queda positivo y `type` se decide por el contexto (egreso/ingreso).\n- Si la moneda no está explícita, asumí **ARS** por defecto.\n\nClasificación `type`:\n- INCOME: “me ingresaron”, “cobré”, “me pagaron”, “comisión”, “sueldo”, “vendí”, “me devolvieron/reintegro” (salvo que sea devolución de vos hacia otro).\n- EXPENSE: “pagué”, “gasté”, “compré”, “transferí”, “me cobraron”, consumos, cuotas, estacionamiento, etc.\n- Ante ambigüedad, elegí la interpretación más probable por el lenguaje del usuario.\n\nCategoría (una sola, exactamente de la lista):\nValid Categories: Comida_Comprada, Supermercado_Despensa, Deporte_Fitness, Educacion_Capacitacion, Inversiones_Finanzas, Vivienda_Servicios, Hogar_Mascotas, Salario_Honorarios, Salud_Bienestar, Transporte, Ocio_Entretenimiento, Regalos_Otros, Financiero_Tarjetas, Ropa_Accesorios.\n- Usá keywords/entidades del concepto tolerando typos. Ej: “estacionamiento”→Transporte, “comisión/sueldo/honorarios”→Salario_Honorarios, “venta de dólares/cambio”→Inversiones_Finanzas, “super/almacén”→Supermercado_Despensa, “alquiler/luz/gas/internet”→Vivienda_Servicios, “tarjeta/visa/master/resumen/interés”→Financiero_Tarjetas, etc.\n\n`description` (limpia y corta):\n- Resumí el concepto sin ruido (quitá montos, monedas, signos, “hoy”, etc.), manteniendo entidades útiles (“a Manu”, “estacionamiento”, “comisión de facturar”).\n- No repitas la categoría; no incluyas la fecha salvo que sea parte esencial del concepto.\n\nFechas relativas vs fijas:\n- Si **no** hay expresión de fecha, asumí hoy: `date_delta_days: 0` y `date_raw_expression: null`.\n- Si hay expresión relativa (“hoy”, “ayer”, “anteayer”, “mañana”, “el lunes”, “la semana pasada”, “hace 3 días”, “el finde”), poné:\n  - `date_raw_expression`: **la frase exacta** encontrada.\n  - `date_delta_days`: resolvela a un entero cuando sea razonable usando `current_date` como referencia.  \n- Si hay una **fecha explícita/calendario** (“12/01”, “2026-01-08”, “el 5 de mayo”): poné `date_delta_days: null` y `date_raw_expression` con la expresión exacta (no inventes una fecha ISO si no está en el texto).\n- Si la expresión temporal es ambigua y no podés resolver con seguridad, conservá `date_raw_expression` y dejá `date_delta_days` como `null`.\n\nDevolvé solo el JSON array final.",
+      "fields": [
+        {
+          "prefix": "Message:",
+          "description": "The user's message containing financial transactions."
+        },
+        {
+          "prefix": "Current Date:",
+          "description": "The current date and day of the week, formatted as ISO date with day."
+        },
+        {
+          "prefix": "Financial Transactions Json:",
+          "description": "A valid JSON array containing the extracted transaction objects."
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "3.1.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}

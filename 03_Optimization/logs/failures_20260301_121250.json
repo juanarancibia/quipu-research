@@ -1,0 +1,64 @@
+[
+  {
+    "input": "hoal querido como estas?",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Ubicación compartida",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Ubicación enviada",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Mañana nos juntamos?",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Dale dale",
+    "expected": [],
+    "predicted": [],
+    "score": 0.0,
+    "raw": "[]"
+  },
+  {
+    "input": "Hoy me ingresaron 123901283409 por el televisor samsung",
+    "expected": [
+      {
+        "type": "EXPENSE",
+        "amount": 123901283409.0,
+        "currency": "ARS",
+        "category": "Hogar_Mascotas",
+        "description": "Televisor samsung",
+        "date_delta_days": 0,
+        "date_raw_expression": "Hoy"
+      }
+    ],
+    "predicted": [
+      {
+        "type": "INCOME",
+        "amount": 123901283409.0,
+        "currency": "ARS",
+        "category": "Regalos_Otros",
+        "description": "Venta del televisor Samsung",
+        "date_delta_days": 0,
+        "date_raw_expression": "Hoy"
+      }
+    ],
+    "score": 0.35,
+    "raw": "[\n  {\n    \"description\": \"Venta del televisor Samsung\",\n    \"amount\": 123901283409,\n    \"currency\": \"ARS\",\n    \"category\": \"Regalos_Otros\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": \"Hoy\"\n  }\n]"
+  }
+]

@@ -1,0 +1,403 @@
+{
+  "total_entries": 15,
+  "strict_json_score": 0.0,
+  "entity_accuracy": 0.7799999999999999,
+  "category_match": 0.5333333333333333,
+  "f1_score": 0.9714,
+  "precision": 1.0,
+  "recall": 0.9444,
+  "per_entry_results": [
+    {
+      "input": "El sabado gaste 28mil en don",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"don\",\n    \"amount\": 28000,\n    \"currency\": \"ARS\",\n    \"category\": \"Regalos_Otros\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": -3,\n    \"date_raw_expression\": \"el sabado\"\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 28000.0,
+          "currency": "ARS",
+          "category": "Regalos_Otros",
+          "description": "don",
+          "date_delta_days": -3,
+          "date_raw_expression": "el sabado"
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "10mil pan para cumpleaños",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"pan para cumpleaños\",\n    \"amount\": 10000,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 10000.0,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "pan para cumpleaños",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "79.000,00 lentes de contacto",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"lentes de contacto\",\n    \"amount\": 79000.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Salud_Bienestar\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 79000.0,
+          "currency": "ARS",
+          "category": "Salud_Bienestar",
+          "description": "lentes de contacto",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "10500 en el chino",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"10500 en el chino\",\n    \"amount\": 10500,\n    \"currency\": \"ARS\",\n    \"category\": \"Supermercado_Despensa\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 10500.0,
+          "currency": "ARS",
+          "category": "Supermercado_Despensa",
+          "description": "10500 en el chino",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "El 4 de julio pague la obra social MET . Fueron $74.687,25",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"obra social MET\",\n    \"amount\": 74687.25,\n    \"currency\": \"ARS\",\n    \"category\": \"Salud_Bienestar\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": -13,\n    \"date_raw_expression\": \"El 4 de julio\"\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 74687.25,
+          "currency": "ARS",
+          "category": "Salud_Bienestar",
+          "description": "obra social MET",
+          "date_delta_days": -13,
+          "date_raw_expression": "El 4 de julio"
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "$9875.00 en una cena con los de la facu",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"cena con los de la facu\",\n    \"amount\": 9875.00,\n    \"currency\": \"ARS\",\n    \"category\": \"Ocio_Entretenimiento\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 9875.0,
+          "currency": "ARS",
+          "category": "Ocio_Entretenimiento",
+          "description": "cena con los de la facu",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "Gaste 156usds",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"Gaste 156usds\",\n    \"amount\": 156,\n    \"currency\": \"USD\",\n    \"category\": \"Ocio_Entretenimiento\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 156.0,
+          "currency": "USD",
+          "category": "Ocio_Entretenimiento",
+          "description": "Gaste 156usds",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.85,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "asado viernes a la noche 38,820",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"asado viernes a la noche\",\n    \"amount\": 38820,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": -3,\n    \"date_raw_expression\": \"viernes\"\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 38820.0,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "asado viernes a la noche",
+          "date_delta_days": -3,
+          "date_raw_expression": "viernes"
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "6400 milanesas",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"milanesas\",\n    \"amount\": 6400,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 6400.0,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "milanesas",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.85,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "3000 estacionamiento",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"estacionamiento\",\n    \"amount\": 3000,\n    \"currency\": \"ARS\",\n    \"category\": \"Transporte\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 3000.0,
+          "currency": "ARS",
+          "category": "Transporte",
+          "description": "estacionamiento",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "GAste:\n* 6.240 en camino de las sierras\n* 83.000 en nafta\n* 13450 en regalo vicky\n* 19.902 en carrefour express",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"camino de las sierras\",\n    \"amount\": 6240,\n    \"currency\": \"ARS\",\n    \"category\": \"Transporte\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"nafta\",\n    \"amount\": 83000,\n    \"currency\": \"ARS\",\n    \"category\": \"Transporte\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"regalo vicky\",\n    \"amount\": 13450,\n    \"currency\": \"ARS\",\n    \"category\": \"Regalos_Otros\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  },\n  {\n    \"description\": \"carrefour express\",\n    \"amount\": 19902,\n    \"currency\": \"ARS\",\n    \"category\": \"Supermercado_Despensa\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 6240.0,
+          "currency": "ARS",
+          "category": "Transporte",
+          "description": "camino de las sierras",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 83000.0,
+          "currency": "ARS",
+          "category": "Transporte",
+          "description": "nafta",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 13450.0,
+          "currency": "ARS",
+          "category": "Regalos_Otros",
+          "description": "regalo vicky",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        },
+        {
+          "type": "EXPENSE",
+          "amount": 19902.0,
+          "currency": "ARS",
+          "category": "Supermercado_Despensa",
+          "description": "carrefour express",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 4,
+        "expected": 4,
+        "true_positives": 4,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "El 1 de agosto recibi 1290000 por vender 1000 dolares",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"Venta de 1000 dolares\",\n    \"amount\": 1290000,\n    \"currency\": \"ARS\",\n    \"category\": \"Inversiones_Finanzas\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": -5,\n    \"date_raw_expression\": \"El 1 de agosto\"\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "INCOME",
+          "amount": 1290000.0,
+          "currency": "ARS",
+          "category": "Inversiones_Finanzas",
+          "description": "Venta de 1000 dolares",
+          "date_delta_days": -5,
+          "date_raw_expression": "El 1 de agosto"
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.86,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "2080 camino de las sierras",
+      "raw_response": "[]",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      }
+    },
+    {
+      "input": "81557,50 compra de Bondiolas para cumpleaños",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"compra de Bondiolas para cumpleaños\",\n    \"amount\": 81557.50,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": null,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 81557.5,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "compra de Bondiolas para cumpleaños",
+          "date_delta_days": null,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.71,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    },
+    {
+      "input": "25mil merienda con emi",
+      "raw_response": "```json\n[\n  {\n    \"description\": \"merienda con emi\",\n    \"amount\": 25000,\n    \"currency\": \"ARS\",\n    \"category\": \"Comida_Comprada\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]\n```",
+      "parsed_targets": [
+        {
+          "type": "EXPENSE",
+          "amount": 25000.0,
+          "currency": "ARS",
+          "category": "Comida_Comprada",
+          "description": "merienda con emi",
+          "date_delta_days": 0,
+          "date_raw_expression": null
+        }
+      ],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 1,
+        "expected": 1,
+        "true_positives": 1,
+        "false_positives": 0,
+        "false_negatives": 0
+      }
+    }
+  ]
+}

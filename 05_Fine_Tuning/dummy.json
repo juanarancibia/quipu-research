@@ -1,0 +1,1 @@
+{"error_statistics": {"hard_gate_failures": 0}, "f1_score": 0.95, "precision": 0.96, "recall": 0.94, "entity_accuracy": 0.85, "category_match": 0.9, "strict_json_score": 0.9, "total_entries": 100, "latency_stats": {"p50_seconds": 0.45, "p99_seconds": 1.25}}

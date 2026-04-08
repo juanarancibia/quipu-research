@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Insights - Quipu Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-link {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: #5568d3;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-large {
+            font-size: 48px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 12px 0;
+            display: flex;
+        }
+
+        .progress-expense {
+            background: #ef4444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .progress-income {
+            background: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .category-list {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-name {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .category-count {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .transactions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .transaction-stat {
+            background: #f3f4f6;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .transaction-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .transaction-stat-label {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+
+        .recommendations {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendation {
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .recommendation:last-child {
+            margin-bottom: 0;
+        }
+
+        .recommendation.warning {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .recommendation.info {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .recommendation.success {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+        }
+
+        .recommendation-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .recommendation-text {
+            color: #1f2937;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .empty-state {
+            background: white;
+            border-radius: 12px;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .empty-state h2 {
+            color: #667eea;
+            margin-bottom: 12px;
+        }
+
+        .empty-state p {
+            color: #6b7280;
+        }
+
+        .amount-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .amount-stat-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .amount-stat-title {
+            font-size: 12px;
+            color: #6b7280;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .amount-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .amount-stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .amount-stat-label {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+
+        .amount-stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .chart-container {
+            margin-top: 16px;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .bar-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar-label {
+            min-width: 40px;
+            font-size: 12px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .bar {
+            flex: 1;
+            height: 24px;
+            background: #667eea;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Dataset Insights</h1>
+            <p style="color: #666; margin-top: 4px;">Analyze your golden dataset balance and coverage</p>
+            <div class="nav-links">
+                <a href="/" class="nav-link">← Back to Curator</a>
+            </div>
+        </div>
+
+        <div id="content">
+            <div class="loading">Loading insights...</div>
+        </div>
+    </div>
+
+    <script>
+        async function loadInsights() {
+            try {
+                const response = await fetch('/api/insights');
+                const data = await response.json();
+
+                if (data.total_entries === 0) {
+                    document.getElementById('content').innerHTML = `
+                        <div class="empty-state">
+                            <h2>No data yet</h2>
+                            <p>Start curating your dataset to see insights and recommendations</p>
+                            <a href="/" class="nav-link" style="display: inline-block; margin-top: 20px;">Go to Curator</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                renderDashboard(data);
+            } catch (error) {
+                console.error('Error loading insights:', error);
+                document.getElementById('content').innerHTML = `
+                    <div class="empty-state">
+                        <h2>Error loading insights</h2>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        function renderDashboard(data) {
+            const html = `
+                <div class="dashboard">
+                    <!-- Total Entries -->
+                    <div class="card">
+                        <div class="card-title">📝 Total Entries</div>
+                        <div class="stat-large">${data.total_entries}</div>
+                        <div class="stat-label">Curated conversations</div>
+                    </div>
+
+                    <!-- Total Transactions -->
+                    <div class="card">
+                        <div class="card-title">💰 Total Transactions</div>
+                        <div class="stat-large">${data.total_transactions}</div>
+                        <div class="stat-label">Individual transactions</div>
+                    </div>
+
+                    <!-- Avg Transactions per Entry -->
+                    <div class="card">
+                        <div class="card-title">📈 Average Complexity</div>
+                        <div class="stat-large">${(data.total_transactions / data.total_entries).toFixed(1)}</div>
+                        <div class="stat-label">Transactions per entry</div>
+                    </div>
+                </div>
+
+                <!-- Type Distribution -->
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-title">⚖️ Type Distribution</div>
+                    <div class="progress-bar">
+                        <div class="progress-expense" style="width: ${data.type_distribution.percentages.EXPENSE}%">
+                            ${data.type_distribution.percentages.EXPENSE}% Expense
+                        </div>
+                        <div class="progress-income" style="width: ${data.type_distribution.percentages.INCOME}%">
+                            ${data.type_distribution.percentages.INCOME}% Income
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 12px;">
+                        <div>
+                            <span style="font-weight: 600; color: #ef4444;">Expenses:</span>
+                            <span style="color: #6b7280;">${data.type_distribution.counts.EXPENSE || 0} transactions</span>
+                        </div>
+                        <div>
+                            <span style="font-weight: 600; color: #10b981;">Incomes:</span>
+                            <span style="color: #6b7280;">${data.type_distribution.counts.INCOME || 0} transactions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard">
+                    <!-- Expense Categories -->
+                    <div class="card">
+                        <div class="card-title">🔴 Expense Categories</div>
+                        <ul class="category-list">
+                            ${renderCategories(data.category_distribution.EXPENSE)}
+                        </ul>
+                    </div>
+
+                    <!-- Income Categories -->
+                    <div class="card">
+                        <div class="card-title">🟢 Income Categories</div>
+                        <ul class="category-list">
+                            ${renderCategories(data.category_distribution.INCOME)}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Transactions per Entry -->
+                <div class="card" style="margin-top: 20px; margin-bottom: 20px;">
+                    <div class="card-title">📊 Transactions per Entry Distribution</div>
+                    <div class="transactions-grid">
+                        ${renderTransactionsPerEntry(data.transactions_per_entry)}
+                    </div>
+                </div>
+
+                <!-- Amount Statistics -->
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-title">💵 Amount Statistics</div>
+                    <div class="amount-stats">
+                        ${renderAmountStats('Expenses', data.amount_statistics.EXPENSE)}
+                        ${renderAmountStats('Incomes', data.amount_statistics.INCOME)}
+                    </div>
+                </div>
+
+                <!-- Currency Distribution -->
+                ${Object.keys(data.currency_distribution).length > 0 ? `
+                <div class="card" style="margin-bottom: 20px;">
+                    <div class="card-title">🌍 Currency Distribution</div>
+                    <div class="chart-container">
+                        <div class="bar-chart">
+                            ${renderCurrencyChart(data.currency_distribution, data.total_transactions)}
+                        </div>
+                    </div>
+                </div>
+                ` : ''}
+
+                <!-- Recommendations -->
+                <div class="recommendations">
+                    <div class="card-title">💡 Recommendations for Better Balance</div>
+                    ${data.recommendations.map(rec => `
+                        <div class="recommendation ${rec.type}">
+                            <div class="recommendation-icon">
+                                ${rec.type === 'warning' ? '⚠️' : rec.type === 'success' ? '✅' : 'ℹ️'}
+                            </div>
+                            <div class="recommendation-text">${rec.message}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            document.getElementById('content').innerHTML = html;
+        }
+
+        function renderCategories(categories) {
+            const sorted = Object.entries(categories).sort((a, b) => b[1] - a[1]);
+
+            if (sorted.length === 0) {
+                return '<li class="category-item" style="justify-content: center; color: #9ca3af;">No data yet</li>';
+            }
+
+            return sorted.map(([name, count]) => `
+                <li class="category-item">
+                    <span class="category-name">${name}</span>
+                    <span class="category-count">${count}</span>
+                </li>
+            `).join('');
+        }
+
+        function renderTransactionsPerEntry(distribution) {
+            return Object.entries(distribution).sort((a, b) => parseInt(a[0]) - parseInt(b[0])).map(([num, count]) => `
+                <div class="transaction-stat">
+                    <div class="transaction-stat-value">${count}</div>
+                    <div class="transaction-stat-label">${num} transaction${num > 1 ? 's' : ''}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderAmountStats(title, stats) {
+            if (!stats || Object.keys(stats).length === 0) {
+                return `
+                    <div class="amount-stat-box">
+                        <div class="amount-stat-title">${title}</div>
+                        <div style="color: #9ca3af; font-size: 14px; padding: 8px 0;">No data</div>
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="amount-stat-box">
+                    <div class="amount-stat-title">${title}</div>
+                    <div class="amount-stat-grid">
+                        <div class="amount-stat-item">
+                            <span class="amount-stat-label">Min</span>
+                            <span class="amount-stat-value">${stats.min.toFixed(2)}</span>
+                        </div>
+                        <div class="amount-stat-item">
+                            <span class="amount-stat-label">Max</span>
+                            <span class="amount-stat-value">${stats.max.toFixed(2)}</span>
+                        </div>
+                        <div class="amount-stat-item">
+                            <span class="amount-stat-label">Avg</span>
+                            <span class="amount-stat-value">${stats.avg.toFixed(2)}</span>
+                        </div>
+                        <div class="amount-stat-item">
+                            <span class="amount-stat-label">Median</span>
+                            <span class="amount-stat-value">${stats.median.toFixed(2)}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderCurrencyChart(currencies, total) {
+            const sorted = Object.entries(currencies).sort((a, b) => b[1] - a[1]);
+            const maxCount = Math.max(...sorted.map(([_, count]) => count));
+
+            return sorted.map(([currency, count]) => {
+                const percentage = (count / total * 100).toFixed(1);
+                const width = (count / maxCount * 100);
+
+                return `
+                    <div class="bar-item">
+                        <div class="bar-label">${currency}</div>
+                        <div class="bar" style="width: ${width}%">${count} (${percentage}%)</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Load insights on page load
+        loadInsights();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,827 @@
+{
+  "total_entries": 50,
+  "strict_json_score": 0.0,
+  "entity_accuracy": 0.08,
+  "category_match": 0.08,
+  "f1_score": 0.0,
+  "precision": 0.0,
+  "recall": 0.0,
+  "error_statistics": {
+    "hard_gate_failures": 50,
+    "total_entries": 50,
+    "total_expected_transactions": 60,
+    "total_matched_pairs": 0,
+    "amount_errors": 60,
+    "currency_errors": 60,
+    "type_errors": 60,
+    "category_errors": 60,
+    "date_delta_errors": 60,
+    "date_expression_errors": 60
+  },
+  "per_entry_results": [
+    {
+      "input": "Gaste 6500 en el cine hoy",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "El sabado gaste 28mil en don",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "3mil cena maxi",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "pague 9650 en comida de pedidos ya el 31/12/2025\npague 5047 en super libertad el 31/12/2025\npague 8400 el 01/01/2026\npague 1900 en alto market el 01/01/2026\npague 3600 en don coco el 02/01/2026\npague 5000 en spotify el 03/01/2026\ngaste 3847 en polleria el 03/01/2026\ngaste 7700 en quisco el 03/01/2026\ngaste 11500 en helado hoy",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 9,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 9
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me ingresaron:\n\n- 756520 por venta de 496,25 dolares por dolar app el 8 de enero\n- ⁠756768 por venta de 496,25 dolares por dolar app el 11 de enero",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 2,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 2
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "pago 6000 helado cumple juan",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "10mil pan para cumpleaños",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Pague 32221 de afip",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me gasté 5166,66 en un lomito",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Che, ayer me dieron 50 lucas por el cumple de mi abuela",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "7300 en huevos",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me gasté 45000 en cosas de deporte",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 8900 en la farmacia por un ibuprofeno y gasas",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "tuve todos esots gastos\nLuz\t$14.159,60\nGas\t $7.804,81\nAgua\t$17.447,85",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 3,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 3
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me ingresaron 960000 pesos de sueldo",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "10500 en el chino",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "PAGUE 51043 DE EPEC",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Pague 1014852 en la tercer cuota del auto",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 25.000 mangos en un libro",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Hoy me ingresaron 123901283409 por el televisor samsung",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "7mil vivero",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 16k en un regalo",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "6400 milanesas",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 28k en el Don el sabado",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Ok",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me depositaron el bono de 350 lucas",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "GASTE 118690 EN RENTAS DEL AÑO 2025",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Pague 1500 el estacionamiento el martes pasado",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Pague $45.000 por el gimnasio",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 26000 en partido",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 15 lucas en un fernet y coca",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "GAste:\n* 6.240 en camino de las sierras\n* 83.000 en nafta\n* 13450 en regalo vicky\n* 19.902 en carrefour express",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 4,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 4
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "No me llegó el comprobante",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 15000 en la entrada de boliche boticario",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "79.000,00 lentes de contacto",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Ubicación enviada",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 598.500 en la cuota mensual del postgrado UCEMA",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 36679 en monotributo arca",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste $12.729 en una hamburguesa de Ricaso",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Pague 200000 alquiler",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Ayer pague $ 120.136,98 de tarjeta de credito",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Televisor samsung, 123901283409 pe",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "pague 4500 en milanesas de pollo ayer",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "25000 psicóloga",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me entraron 12 lucas de un sorteo que gane",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Me deiron 15mil de un regalo, ¡gracias!",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "25mil ayer de la psicologa",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 154300 cuota belgrano",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "hoal querido como estas?",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 1.0,
+      "category_match": 1.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 0,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 0
+      },
+      "error_breakdown": []
+    },
+    {
+      "input": "Gaste 16 lucas en un regalo para Rocha",
+      "raw_response": "",
+      "parsed_targets": [],
+      "strict_json_score": 0.0,
+      "entity_accuracy": 0.0,
+      "category_match": 0.0,
+      "transaction_counts": {
+        "predicted": 0,
+        "expected": 1,
+        "true_positives": 0,
+        "false_positives": 0,
+        "false_negatives": 1
+      },
+      "error_breakdown": []
+    }
+  ],
+  "latency_stats": {
+    "p50_seconds": 0.205,
+    "p99_seconds": 0.591
+  }
+}

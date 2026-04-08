@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dataset Curator - Quipu Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .controls {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .sort-selector {
+            padding: 8px 12px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .sort-selector:hover {
+            background: #f0f0f0;
+        }
+
+        .controls-separator {
+            width: 1px;
+            height: 30px;
+            background: #e5e7eb;
+            margin: 0 8px;
+        }
+
+        .conversation-list {
+            display: grid;
+            gap: 16px;
+        }
+
+        .conversation-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .conversation-card.saved {
+            border-color: #10b981;
+            opacity: 0.7;
+        }
+
+        .conversation-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .saved-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .input-section {
+            margin-bottom: 16px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .input-text {
+            background: #f3f4f6;
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            font-size: 14px;
+            line-height: 1.5;
+            border: 2px solid transparent;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .input-text:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+        }
+
+        .output-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .transaction-container {
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+            background: #f9fafb;
+        }
+
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .transaction-label {
+            font-weight: 600;
+            color: #4b5563;
+            font-size: 14px;
+        }
+
+        .btn-remove-transaction {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .btn-remove-transaction:hover {
+            background: #dc2626;
+        }
+
+        .btn-add-transaction {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-add-transaction:hover {
+            background: #2563eb;
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .field-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .field-input {
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .field-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .type-select {
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .btn-save {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-save:hover:not(:disabled) {
+            background: #059669;
+        }
+
+        .btn-save:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .btn-reset {
+            background: #6b7280;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #4b5563;
+        }
+
+        .btn-ignore {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .btn-ignore:hover:not(:disabled) {
+            background: #d97706;
+        }
+
+        .btn-ignore:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.success {
+            background: #10b981;
+        }
+
+        .notification.error {
+            background: #ef4444;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        .empty-state h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Dataset Curator</h1>
+            <p style="color: #666; margin-top: 4px;">Review and curate your golden dataset for Quipu Research</p>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-label">Total Conversations</div>
+                    <div class="stat-value" id="stat-total">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Saved to Golden</div>
+                    <div class="stat-value" id="stat-saved">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Remaining</div>
+                    <div class="stat-value" id="stat-remaining">-</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <a href="/insights"
+                    style="display: inline-block; padding: 10px 20px; background: white; color: #667eea; text-decoration: none; border-radius: 8px; font-weight: 500; border: 2px solid white; transition: all 0.2s;">
+                    📊 View Dataset Insights
+                </a>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="unsaved">Not Saved</button>
+            <button class="filter-btn" data-filter="saved">Saved</button>
+            <button class="filter-btn" data-filter="expense">Expenses</button>
+            <button class="filter-btn" data-filter="income">Incomes</button>
+
+            <div class="controls-separator"></div>
+
+            <label for="sort-order" style="color: #667eea; font-weight: 500; font-size: 14px;">Order:</label>
+            <select id="sort-order" class="sort-selector">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+            </select>
+        </div>
+
+        <div id="conversation-list" class="conversation-list">
+            <div class="loading">Loading conversations...</div>
+        </div>
+    </div>
+
+    <script>
+        let allConversations = [];
+        let categories = { expense: [], income: [] };
+        let currentFilter = 'all';
+        let currentSortOrder = 'newest';
+        let currentPage = 0;
+        const ITEMS_PER_PAGE = 20;
+
+        // Sort conversations by conversation_date
+        function sortConversations(conversations) {
+            return conversations.sort((a, b) => {
+                const dateA = new Date(a.conversation_date || '1970-01-01');
+                const dateB = new Date(b.conversation_date || '1970-01-01');
+
+                if (currentSortOrder === 'newest') {
+                    return dateB - dateA; // Most recent first
+                } else {
+                    return dateA - dateB; // Oldest first
+                }
+            });
+        }
+
+        // Load categories
+        async function loadCategories() {
+            try {
+                const response = await fetch('/api/categories');
+                if (response.ok) {
+                    categories = await response.json();
+                    console.log('Loaded categories:', categories);
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        // Load conversations on page load
+        async function loadConversations() {
+            try {
+                const response = await fetch('/api/conversations');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                allConversations = data.conversations;
+                console.log(`Loaded ${allConversations.length} conversations`);
+                await loadCategories();
+                updateStats();
+                renderConversations();
+            } catch (error) {
+                console.error('Error loading conversations:', error);
+                const container = document.getElementById('conversation-list');
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>Error loading conversations</h2>
+                        <p>${error.message}</p>
+                        <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: white; border: 2px solid white; border-radius: 6px; cursor: pointer;">Reload Page</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Update statistics
+        async function updateStats() {
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+
+                document.getElementById('stat-total').textContent = stats.tentative.total;
+                document.getElementById('stat-saved').textContent = stats.golden.total;
+                document.getElementById('stat-remaining').textContent = stats.remaining;
+            } catch (error) {
+                console.error('Error updating stats:', error);
+            }
+        }
+
+        // Render conversations based on filter
+        function renderConversations() {
+            const container = document.getElementById('conversation-list');
+
+            let filtered = allConversations;
+
+            if (currentFilter === 'unsaved') {
+                filtered = allConversations.filter(c => !c.saved);
+            } else if (currentFilter === 'saved') {
+                filtered = allConversations.filter(c => c.saved);
+            } else if (currentFilter === 'expense') {
+                filtered = allConversations.filter(c =>
+                    c.outputs && c.outputs.some(o => o.type === 'expense')
+                );
+            } else if (currentFilter === 'income') {
+                filtered = allConversations.filter(c =>
+                    c.outputs && c.outputs.some(o => o.type === 'income')
+                );
+            }
+
+            // Sort filtered conversations
+            filtered = sortConversations([...filtered]);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>No conversations found</h2>
+                        <p>Try changing your filter</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Pagination
+            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+            currentPage = Math.min(currentPage, totalPages - 1);
+            const start = currentPage * ITEMS_PER_PAGE;
+            const end = start + ITEMS_PER_PAGE;
+            const paginatedItems = filtered.slice(start, end);
+
+            console.log(`Rendering ${paginatedItems.length} items (page ${currentPage + 1}/${totalPages})`);
+
+            try {
+                const cardsHtml = paginatedItems.map((conv, index) => {
+                    try {
+                        const outputs = conv.outputs || [conv.output]; // Support both formats
+                        if (!outputs || outputs.length === 0) {
+                            console.warn('Conversation has no outputs:', conv);
+                            return '';
+                        }
+
+                        const transactionsHtml = outputs.map((output, txIdx) => {
+                            if (!output) return '';
+                            return `
+                            <div class="transaction-container" data-tx-index="${txIdx}">
+                                <div class="transaction-header">
+                                    <span class="transaction-label">Transaction ${txIdx + 1} of ${outputs.length}</span>
+                                    ${outputs.length > 1 ? `<button class="btn-remove-transaction" onclick="removeTransaction(this)">Remove</button>` : ''}
+                                </div>
+                                <div class="output-grid">
+                                    <div class="field-group">
+                                        <label class="field-label">Type</label>
+                                        <select class="type-select" data-field="type" onchange="handleTypeChange(this)">
+                                            <option value="expense" ${output.type === 'expense' ? 'selected' : ''}>Expense</option>
+                                            <option value="income" ${output.type === 'income' ? 'selected' : ''}>Income</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="field-group">
+                                        <label class="field-label">Amount</label>
+                                        <input type="number" class="field-input" data-field="amount" value="${output.amount || 0}" step="0.01">
+                                    </div>
+                                    
+                                    <div class="field-group">
+                                        <label class="field-label">Currency</label>
+                                        <input type="text" class="field-input" data-field="currency" value="${escapeHtml(output.currency || 'ARS')}">
+                                    </div>
+                                    
+                                    <div class="field-group">
+                                        <label class="field-label">Category</label>
+                                        <select class="field-input" data-field="category">
+                                            ${getCategoryOptions(output.type || 'expense', output.category)}
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="field-group">
+                                        <label class="field-label">Date Offset (days) <small style="opacity: 0.7;">[opcional]</small></label>
+                                        <input type="number" class="field-input" data-field="date_delta_days" value="${output.date_delta_days !== null && output.date_delta_days !== undefined ? output.date_delta_days : ''}" placeholder="0" title="Offset en días: 0 (hoy), -1 (ayer), null (fecha absoluta). Déjalo vacío si es fecha absoluta.">
+                                    </div>
+                                    
+                                    <div class="field-group">
+                                        <label class="field-label">Date Expression <small style="opacity: 0.7;">[opcional]</small></label>
+                                        <input type="text" class="field-input" data-field="date_raw_expression" value="${escapeHtml(output.date_raw_expression || '')}" placeholder="vacío si no hay fecha" title="Expresión original del usuario: 'ayer', 'el 4 de julio', etc. Déjalo vacío si no se menciona fecha.">
+                                    </div>
+                                    
+                                    <div class="field-group" style="grid-column: 1 / -1;">
+                                        <label class="field-label">Description</label>
+                                        <input type="text" class="field-input" data-field="description" value="${escapeHtml(output.description || '')}">
+                                    </div>
+                                </div>
+                            </div>
+                        `}).join('');
+
+                        return `
+                            <div class="conversation-card ${conv.saved ? 'saved' : ''}" data-original-input="${escapeHtml(conv.input)}" data-conversation-date="${conv.conversation_date || ''}">
+                                ${conv.saved ? '<span class="saved-badge">✓ SAVED</span>' : ''}
+                                
+                                <div class="input-section">
+                                    <div class="section-label">User Input</div>
+                                    <textarea class="input-text" data-field="input">${escapeHtml(conv.input)}</textarea>
+                                </div>
+                                
+                                <div class="input-section" style="margin-top: 12px;">
+                                    <div class="section-label">Conversation Date</div>
+                                    <input type="date" class="field-input" data-field="conversation_date" value="${conv.conversation_date || ''}" style="width: 100%; padding: 8px;">
+                                </div>
+                                
+                                <div class="section-label">Bot Output (${outputs.length} transaction${outputs.length > 1 ? 's' : ''})</div>
+                                
+                                <div class="transactions-container">
+                                    ${transactionsHtml}
+                                </div>
+                                
+                                <button class="btn-add-transaction" onclick="addTransaction(this)">+ Add Another Transaction</button>
+                                
+                                <div class="action-buttons">
+                                    <button class="btn btn-reset" onclick="resetCard(this)">Reset</button>
+                                    <button class="btn btn-ignore" onclick="saveAsNonTransaction(this)" ${conv.saved ? 'disabled' : ''}>
+                                        No es transacción / Ignorar
+                                    </button>
+                                    <button class="btn btn-save" onclick="saveEntry(this)" ${conv.saved ? 'disabled' : ''}>
+                                        ${conv.saved ? '✓ Saved' : 'Save to Golden Dataset'}
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                    } catch (err) {
+                        console.error('Error rendering conversation:', err, conv);
+                        return '';
+                    }
+                }).filter(html => html).join('');
+
+                const paginationHtml = totalPages > 1 ? `
+                    <div style="display: flex; justify-content: center; gap: 12px; margin-top: 20px; background: white; padding: 20px; border-radius: 12px;">
+                        <button onclick="changePage(-1)" ${currentPage === 0 ? 'disabled' : ''} style="padding: 8px 16px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 6px; cursor: pointer; font-weight: 500;">Previous</button>
+                        <span style="padding: 8px 16px; color: #667eea; font-weight: 600;">Page ${currentPage + 1} of ${totalPages} (${filtered.length} total)</span>
+                        <button onclick="changePage(1)" ${currentPage >= totalPages - 1 ? 'disabled' : ''} style="padding: 8px 16px; border: 2px solid #667eea; background: white; color: #667eea; border-radius: 6px; cursor: pointer; font-weight: 500;">Next</button>
+                    </div>
+                ` : '';
+
+                container.innerHTML = cardsHtml + paginationHtml;
+            } catch (error) {
+                console.error('Error in renderConversations:', error);
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>Error rendering conversations</h2>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Change page
+        function changePage(direction) {
+            currentPage += direction;
+            window.scrollTo(0, 0);
+            renderConversations();
+        }        // Save entry to golden dataset
+        async function saveEntry(button) {
+            const card = button.closest('.conversation-card');
+            const originalInput = card.getAttribute('data-original-input');
+
+            // Get edited values
+            const input = card.querySelector('[data-field="input"]').value.trim();
+            const conversationDate = card.querySelector('[data-field="conversation_date"]').value;
+
+            if (!conversationDate) {
+                showNotification('Please provide a conversation date', 'error');
+                return;
+            }
+
+            // Get all transactions
+            const transactions = card.querySelectorAll('.transaction-container');
+            const targets = [];
+
+            for (const txContainer of transactions) {
+                const type = txContainer.querySelector('[data-field="type"]').value;
+                const amount = parseFloat(txContainer.querySelector('[data-field="amount"]').value);
+                const currency = txContainer.querySelector('[data-field="currency"]').value.trim();
+                const category = txContainer.querySelector('[data-field="category"]').value.trim();
+                const description = txContainer.querySelector('[data-field="description"]').value.trim();
+                const dateDeltaDaysInput = txContainer.querySelector('[data-field="date_delta_days"]').value;
+                const dateRawExpression = txContainer.querySelector('[data-field="date_raw_expression"]').value.trim();
+
+                // Validate only required fields
+                if (!amount || !currency || !category || !description) {
+                    showNotification('Please fill all required fields (type, amount, currency, category, description)', 'error');
+                    return;
+                }
+
+                // date_delta_days: null if empty, otherwise parse as int
+                const dateDeltaDays = dateDeltaDaysInput === '' ? null : parseInt(dateDeltaDaysInput);
+
+                // date_raw_expression: null if empty, otherwise use the value
+                const dateRawExpr = dateRawExpression === '' ? null : dateRawExpression;
+
+                targets.push({
+                    type: type,
+                    amount: amount,
+                    currency: currency,
+                    category: category,
+                    description: description,
+                    date_delta_days: dateDeltaDays,
+                    date_raw_expression: dateRawExpr
+                });
+            }
+
+            if (!input) {
+                showNotification('Please provide input text', 'error');
+                return;
+            }
+
+            if (targets.length === 0) {
+                showNotification('Please add at least one transaction', 'error');
+                return;
+            }
+
+            const entry = {
+                input: input,
+                conversation_date: conversationDate,
+                targets: targets
+            };
+
+            try {
+                const response = await fetch('/api/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(entry)
+                });
+
+                if (response.ok) {
+                    showNotification(`✓ Saved ${targets.length} transaction${targets.length > 1 ? 's' : ''} to golden dataset!`, 'success');
+
+                    // Mark as saved in local data
+                    const conv = allConversations.find(c => c.input === originalInput);
+                    if (conv) conv.saved = true;
+
+                    // Update UI
+                    card.classList.add('saved');
+                    card.insertAdjacentHTML('afterbegin', '<span class="saved-badge">✓ SAVED</span>');
+                    button.disabled = true;
+                    button.textContent = '✓ Saved';
+
+                    updateStats();
+                } else {
+                    const error = await response.json();
+                    showNotification(error.error || 'Error saving entry', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving entry:', error);
+                showNotification('Error saving entry', 'error');
+            }
+        }
+
+        // Save as non-transaction (empty targets array)
+        async function saveAsNonTransaction(button) {
+            const card = button.closest('.conversation-card');
+            const originalInput = card.getAttribute('data-original-input');
+
+            // Get edited values
+            const input = card.querySelector('[data-field="input"]').value.trim();
+            const conversationDate = card.querySelector('[data-field="conversation_date"]').value;
+
+            if (!conversationDate) {
+                showNotification('Please provide a conversation date', 'error');
+                return;
+            }
+
+            if (!input) {
+                showNotification('Please provide input text', 'error');
+                return;
+            }
+
+            const entry = {
+                input: input,
+                conversation_date: conversationDate,
+                targets: []  // Empty array for non-transactions
+            };
+
+            try {
+                const response = await fetch('/api/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(entry)
+                });
+
+                if (response.ok) {
+                    showNotification('✓ Saved as non-transaction to golden dataset!', 'success');
+
+                    // Mark as saved in local data
+                    const conv = allConversations.find(c => c.input === originalInput);
+                    if (conv) conv.saved = true;
+
+                    // Update UI
+                    card.classList.add('saved');
+                    card.insertAdjacentHTML('afterbegin', '<span class="saved-badge">✓ SAVED</span>');
+                    button.disabled = true;
+                    button.textContent = '✓ Ignored';
+
+                    // Disable the regular save button too
+                    const saveButton = card.querySelector('.btn-save');
+                    if (saveButton) {
+                        saveButton.disabled = true;
+                        saveButton.textContent = '✓ Saved';
+                    }
+
+                    updateStats();
+                } else {
+                    const error = await response.json();
+                    showNotification(error.error || 'Error saving entry', 'error');
+                }
+            } catch (error) {
+                console.error('Error saving entry:', error);
+                showNotification('Error saving entry', 'error');
+            }
+        }
+
+        // Add a new transaction to a card
+        function addTransaction(button) {
+            const card = button.closest('.conversation-card');
+            const container = card.querySelector('.transactions-container');
+            const transactions = container.querySelectorAll('.transaction-container');
+            const newIndex = transactions.length;
+
+            const newTransaction = document.createElement('div');
+            newTransaction.className = 'transaction-container';
+            newTransaction.setAttribute('data-tx-index', newIndex);
+            newTransaction.innerHTML = `
+                <div class="transaction-header">
+                    <span class="transaction-label">Transaction ${newIndex + 1}</span>
+                    <button class="btn-remove-transaction" onclick="removeTransaction(this)">Remove</button>
+                </div>
+                <div class="output-grid">
+                    <div class="field-group">
+                        <label class="field-label">Type</label>
+                        <select class="type-select" data-field="type" onchange="handleTypeChange(this)">
+                            <option value="expense" selected>Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Amount</label>
+                        <input type="number" class="field-input" data-field="amount" value="0" step="0.01">
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Currency</label>
+                        <input type="text" class="field-input" data-field="currency" value="ARS">
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Category</label>
+                        <select class="field-input" data-field="category" onchange="handleCategoryChange(this)">
+                            ${getCategoryOptions('expense', '')}
+                        </select>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Date Offset (days) <small style="opacity: 0.7;">[opcional]</small></label>
+                        <input type="number" class="field-input" data-field="date_delta_days" value="" placeholder="0" title="Offset en días: 0 (hoy), -1 (ayer), null (fecha absoluta). Déjalo vacío si es fecha absoluta.">
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Date Expression <small style="opacity: 0.7;">[opcional]</small></label>
+                        <input type="text" class="field-input" data-field="date_raw_expression" value="" placeholder="vacío si no hay fecha" title="Expresión original del usuario: 'ayer', 'el 4 de julio', etc. Déjalo vacío si no se menciona fecha.">
+                    </div>
+                    
+                    <div class="field-group" style="grid-column: 1 / -1;">
+                        <label class="field-label">Description</label>
+                        <input type="text" class="field-input" data-field="description" value="">
+                    </div>
+                </div>
+            `;
+
+            container.appendChild(newTransaction);
+            updateTransactionLabels(card);
+        }
+
+        // Remove a transaction from a card
+        function removeTransaction(button) {
+            const card = button.closest('.conversation-card');
+            const txContainer = button.closest('.transaction-container');
+            const container = card.querySelector('.transactions-container');
+
+            // Don't allow removing the last transaction
+            if (container.querySelectorAll('.transaction-container').length <= 1) {
+                showNotification('Cannot remove the last transaction', 'error');
+                return;
+            }
+
+            txContainer.remove();
+            updateTransactionLabels(card);
+        }
+
+        // Update transaction labels after add/remove
+        function updateTransactionLabels(card) {
+            const transactions = card.querySelectorAll('.transaction-container');
+            const totalCount = transactions.length;
+
+            transactions.forEach((tx, idx) => {
+                tx.setAttribute('data-tx-index', idx);
+                const label = tx.querySelector('.transaction-label');
+                if (label) {
+                    label.textContent = `Transaction ${idx + 1} of ${totalCount}`;
+                }
+
+                // Show/hide remove button based on count
+                const removeBtn = tx.querySelector('.btn-remove-transaction');
+                if (removeBtn) {
+                    removeBtn.style.display = totalCount > 1 ? 'block' : 'none';
+                }
+            });
+
+            // Update section label
+            const sectionLabel = card.querySelector('.section-label:nth-of-type(2)');
+            if (sectionLabel) {
+                sectionLabel.textContent = `Bot Output (${totalCount} transaction${totalCount > 1 ? 's' : ''})`;
+            }
+        }
+
+        // Get category options for select dropdown
+        function getCategoryOptions(type, selectedCategory) {
+            const categoryList = categories[type] || categories.expense || [];
+            let options = '<option value="">Select category...</option>';
+
+            categoryList.forEach(cat => {
+                // Support both old format (string) and new format (object with name and description)
+                const categoryName = typeof cat === 'string' ? cat : cat.name;
+                const categoryDesc = typeof cat === 'string' ? '' : cat.description;
+                const selected = categoryName === selectedCategory ? 'selected' : '';
+                const title = categoryDesc ? ` title="${escapeHtml(categoryDesc)}"` : '';
+                options += `<option value="${escapeHtml(categoryName)}" ${selected}${title}>${escapeHtml(categoryName)}</option>`;
+            });
+
+            return options;
+        }
+
+        // Handle type change to update category dropdown
+        function handleTypeChange(selectElement) {
+            const txContainer = selectElement.closest('.transaction-container');
+            const categorySelect = txContainer.querySelector('[data-field="category"]');
+            const newType = selectElement.value;
+
+            // Save current selection
+            const currentCategory = categorySelect.value;
+
+            // Update options
+            categorySelect.innerHTML = getCategoryOptions(newType, '');
+
+            // Try to keep selection if it exists in new list
+            const newOptions = Array.from(categorySelect.options).map(opt => opt.value);
+            if (newOptions.includes(currentCategory)) {
+                categorySelect.value = currentCategory;
+            }
+        }
+
+        // Reset card to original values
+        function resetCard(button) {
+            location.reload(); // Simple solution: reload page
+        }
+
+        // Show notification
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Escape HTML
+        function escapeHtml(text) {
+            if (text === null || text === undefined) return '';
+            const div = document.createElement('div');
+            div.textContent = String(text);
+            return div.innerHTML;
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.getAttribute('data-filter');
+                currentPage = 0; // Reset to first page when filtering
+                renderConversations();
+            });
+        });
+
+        // Sort order selector
+        document.getElementById('sort-order').addEventListener('change', (e) => {
+            currentSortOrder = e.target.value;
+            currentPage = 0; // Reset to first page when sorting changes
+            renderConversations();
+        });
+
+        // Initialize
+        loadConversations();
+    </script>
+</body>
+
+</html>

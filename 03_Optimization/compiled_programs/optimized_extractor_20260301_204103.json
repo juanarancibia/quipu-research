@@ -1,0 +1,73 @@
+{
+  "extractor.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "message": "Gaste 7.000 en el vivero",
+        "current_date": "2025-06-27",
+        "reasoning": "The message \"Gaste 7.000 en el vivero\" means \"I spent 7,000 at the nursery\" in Argentine Spanish. This is a straightforward expense transaction:\n- \"Gaste\" indicates it's an expense (past tense of \"gastar\" = to spend)\n- The amount is 7.000 ARS (the dot is a thousands separator in Spanish, so 7000 ARS)\n- \"El vivero\" (the nursery) sells plants and garden supplies, which falls under the category Hogar_Mascotas (Home/Pets) as it's related to home and garden maintenance\n- No specific date was mentioned, so I'll assume today (0 days delta from current date 2025-06-27)",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"Gaste en el vivero\",\n    \"amount\": 7000.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Hogar_Mascotas\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "message": "Gaste 57mil en las expensas",
+        "current_date": "2025-07-02",
+        "reasoning": "The message \"Gaste 57mil en las expensas\" contains one financial transaction:\n\n- \"Gaste\" indicates a past tense expense (spent)\n- \"57mil\" is Argentine slang where \"mil\" means thousand, so 57mil = 57,000 ARS\n- \"en las expensas\" refers to building/common expenses (maintenance fees for property), which is a housing-related service cost\n\nThis is clearly an EXPENSE transaction. The category \"Vivienda_Servicios\" (Housing_Services) is appropriate because \"expensas\" in Argentine context refers to building maintenance fees, common expenses, or utility costs associated with housing. The date is not specified, so it defaults to today (0 days from current date).",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"expensas\",\n    \"amount\": 57000.0,\n    \"currency\": \"ARS\",\n    \"category\": \"Vivienda_Servicios\",\n    \"type\": \"EXPENSE\",\n    \"date_delta_days\": 0,\n    \"date_raw_expression\": null\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "message": "El 27 de octubre vendí 625 dólares y me ingresaron 884.375 pesos",
+        "current_date": "2025-11-18",
+        "reasoning": "El mensaje indica \"El 27 de octubre vendí 625 dólares y me ingresaron 884.375 pesos\". Esta es una transacción de tipo INGRESO (income) porque la persona recibió pesos al vender dólares.\n\n- Moneda: Pesos argentinos (884.375 ARS)\n- Categoría: Dado que es una venta de dólares (divisa), corresponde a \"Inversiones_Finanzas\" (operación de cambio/venta de moneda extranjera)\n- Tipo: INCOME (es un ingreso de pesos)\n- Fecha: 27 de octubre de 2025. Dado que la fecha actual es 2025-11-18, el 27 de octubre fue hace 22 días (4 días restantes de octubre + 18 días de noviembre)\n- date_delta_days: -22",
+        "financial_transactions_json": "[\n  {\n    \"description\": \"Venta de 625 dólares\",\n    \"amount\": 884.375,\n    \"currency\": \"ARS\",\n    \"category\": \"Inversiones_Finanzas\",\n    \"type\": \"INCOME\",\n    \"date_delta_days\": -22,\n    \"date_raw_expression\": \"27 de octubre\"\n  }\n]"
+      },
+      {
+        "message": "Gaste 32221 en la afip hoy",
+        "current_date": "2025-07-21",
+        "targets": [
+          {
+            "type": "EXPENSE",
+            "amount": 32221.0,
+            "currency": "ARS",
+            "category": "Financiero_Tarjetas",
+            "description": "Pague afip",
+            "date_delta_days": 0,
+            "date_raw_expression": null
+          }
+        ]
+      }
+    ],
+    "signature": {
+      "instructions": "You are a personal finance information extractor specialized in Argentine Spanish (Rioplatense). Your task is to analyze a free-form message that includes informal descriptions of financial transactions, and then extract each transaction as a structured JSON object. For each transaction, you must:\n\n1. Identify and normalize any monetary amounts mentioned. Convert colloquial slang expressions such as:\n   • \"lucas\" to mean 1,000 ARS (e.g., \"15 lucas\" becomes 15000 ARS)\n   • \"gambas\" to mean 100 ARS (e.g., \"5 gambas\" becomes 500 ARS)\n   • \"palos\" to mean 1,000,000 ARS (e.g., \"2 palos\" becomes 2000000 ARS)\n   • Also, recognize terms like \"mangos\", \"pe\", or \"pesitos\" as referring to ARS currency.\n\n2. Determine the correct transaction category by considering contextual clues. For example:\n   • Use \"Supermercado_Despensa\" for mentions of “facturas” unless additional context implies a utility bill (then use \"Vivienda_Servicios\").\n   • Use \"Supermercado_Despensa\" for contexts like “el chino”, “verduleria”, “almacen”, or “despensa”.\n   • Use \"Comida_Comprada\" for cues like “pedidos ya”, “rappi”, “lomito”, or “pizza”.\n   • Refer only to one of the following valid categories: Comida_Comprada, Supermercado_Despensa, Deporte_Fitness, Educacion_Capacitacion, Inversiones_Finanzas, Vivienda_Servicios, Hogar_Mascotas, Salario_Honorarios, Salud_Bienestar, Transporte, Ocio_Entretenimiento, Regalos_Otros, Financiero_Tarjetas, Ropa_Accesorios.\n\n3. Identify if the transaction is an INCOME or an EXPENSE based on contextual wording (e.g., \"pagué\" implies an expense, whereas words like \"recibí\" imply income).\n\n4. Determine the temporal aspect:\n   • Use \"date_delta_days\" to represent when the transaction took place relative to the provided current date (e.g., 0 for today, -1 for yesterday, etc.). \n   • If a specific temporal expression is provided in the message, include it in the \"date_raw_expression\" field. If not, set it to null.\n\n5. Compose the final output as a valid JSON array where each object contains exactly these fields:\n   • description (string): A concise description of the transaction.\n   • amount (float): The positive normalized numerical amount.\n   • currency (string): One of ARS, USD, or EUR.\n   • category (string): One of the valid categories listed above.\n   • type (string): Either \"EXPENSE\" or \"INCOME\".\n   • date_delta_days (integer or null): The temporal delta from the current date.\n   • date_raw_expression (string or null): The exact extracted date expression from the message, if any.\n\nEnsure your final output begins with a brief internal reasoning that explains step-by-step how you derived the structured data from the input message, then provide the final JSON array under the label “Financial Transactions Json:”. Do not include any additional commentary outside of your internal reasoning and the final JSON array.",
+      "fields": [
+        {
+          "prefix": "Message:",
+          "description": "The user's message containing financial transactions."
+        },
+        {
+          "prefix": "Current Date:",
+          "description": "The current date and day of the week, formatted as ISO date with day."
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "${reasoning}"
+        },
+        {
+          "prefix": "Financial Transactions Json:",
+          "description": "A valid JSON array containing the extracted transaction objects."
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.10",
+      "dspy": "3.1.3",
+      "cloudpickle": "3.1"
+    }
+  }
+}

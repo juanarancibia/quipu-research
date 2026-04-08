@@ -1,0 +1,11 @@
+# requirements_training.txt — RunPod dependencies for Quipu SLM fine-tuning
+#
+# Hardware target: RTX 5090 (Blackwell architecture)
+# Nota: PyTorch, Unsloth, xformers y Flash-Attention se instalan 
+# directamente desde el run_pipeline.sh para compilar nativamente.
+
+trl>=0.12.0
+datasets>=2.19.0
+transformers==4.57.6
+accelerate>=0.34.0
+bitsandbytes
