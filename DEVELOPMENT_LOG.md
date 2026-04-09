@@ -562,9 +562,4 @@ El proyecto `quipu-research` se da por **cerrado**. Todos los objetivos de inves
 
 ### Decisión
 
-El research alcanzó el punto donde las ganancias marginales de continuar iterando sobre el modelo no justifican el esfuerzo. Los aprendizajes y resultados obtenidos son suficientes para:
-
-1. **Integrar el modelo en producción** dentro de Quipu como motor de NLU principal.
-2. **Escribir una publicación** compartiendo el proceso completo — desde la recolección de datos en WhatsApp hasta el despliegue de un SLM cuantizado en un Mac — documentando cómo esto mejora los tiempos, costos y precisión de Quipu como aplicación de finanzas personales.
-
-> Lo que queda pendiente es exclusivamente la redacción de la publicación, que ya no pertenece al scope de este repositorio de research.
+El research alcanzó el punto donde las ganancias marginales de continuar iterando sobre el modelo no justifican el esfuerzo. Los aprendizajes y resultados obtenidos son suficientes para **Integrar el modelo en producción** dentro de Quipu como motor de NLU principal.
