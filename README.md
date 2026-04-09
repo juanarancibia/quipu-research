@@ -1,6 +1,6 @@
 # E2E NLU Pipeline: The process of building a 4B SLM for argentinian slang
 
-This repo shows how I built the NLU core for Quipu, a personal finance WhatsApp bot. This is not just another fine-tuning tutorial. It's an end-to-end process of discovering how to distill an Small Language Model (SLM) for an specific task, moving from propietary OpenAI APIs to a quantized locally-hosted model. 
+This repo shows how I built the NLU core for Quipu, a personal finance WhatsApp bot. This is not just another fine tuning tutorial. It's an end-to-end process of discovering how to distill an Small Language Model (SLM) for an specific task, moving from propietary OpenAI APIs to a quantized locally hosted model. 
 
 In  this journey I had to go through all the steps of an ML system: Data Acquisition, Evaluation of frontier models, DSPy prompt optimization, Bidirectional Synthethic Data generation, Fine Tuning and Post-Traning Data Quantization (PTQ).
 
@@ -244,3 +244,9 @@ While dropping the max latency under heavy load to ~9 seconds is a massive archi
 
 1. **Decoupling Prefill and Decode (Chunked Prefill):** Currently, the heavy compute phase of reading the few-shot prompt (Prefill) blocks the memory-bound token generation (Decode) for other users in the batch. Implementing Chunked Prefill will prevent long prompts from spiking the tail latency of concurrent requests.
 2. **Speculative Decoding:** Since Quipu's output is a highly structured, predictable JSON, using a microscopic draft model (e.g., <0.5B params) to generate tokens and having our 4B model simply verify them in parallel could theoretically double our Tokens/sec (TPS) during the decode phase.
+
+## Dive Deeper
+
+If you are interested in the raw, unfiltered engineering process behind this project, I recommend checking out the [DEVELOPMENT_LOG](./DEVELOPMENT_LOG.md).
+
+While this README is a structured summary of the architecture and final outcomes, the development log contains all the notes, the exact CLI commands, the failed experiments, and the raw metrics from every iteration. It's the actual technical diary of how this SLM was built from scratch.
